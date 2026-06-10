@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head Girl Election</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url("{{ url_for('static', filename='bg.jpg') }}");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    min-height:100vh;
+    padding:30px;
+}
+
+        .header{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .header h1{
+            color:#1e3a8a;
+            margin-bottom:10px;
+        }
+
+        .header p{
+            color:#666;
+            font-size:18px;
+        }
+
+        .candidate-container{
+            max-width:1200px;
+            margin:auto;
+
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+        }
+
+        .candidate-card{
+
+            background:white;
+
+            border-radius:20px;
+
+            overflow:hidden;
+
+            border:3px solid transparent;
+
+            cursor:pointer;
+
+            transition:0.3s;
+
+            box-shadow:0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .candidate-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .candidate-card.selected{
+            border:3px solid #2563eb;
+        }
+
+        .candidate-card img{
+            width:100%;
+            height:300px;
+            object-fit:cover;
+        }
+
+        .candidate-info{
+            padding:20px;
+            text-align:center;
+        }
+
+        .candidate-name{
+            font-size:22px;
+            font-weight:bold;
+            margin-bottom:10px;
+        }
+
+        .vote-text{
+            color:#2563eb;
+            font-size:18px;
+            font-weight:bold;
+        }
+
+        input[type="radio"]{
+            display:none;
+        }
+
+        .bottom-section{
+            text-align:center;
+            margin-top:40px;
+        }
+
+        #selectedCandidate{
+            font-size:20px;
+            margin-bottom:20px;
+            color:#111827;
+        }
+
+        button{
+
+            background:#16a34a;
+            color:white;
+
+            border:none;
+
+            padding:16px 40px;
+
+            border-radius:12px;
+
+            font-size:20px;
+
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#15803d;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Head Girl Election</h1>
+        <p>Select one candidate and confirm your vote.</p>
+    </div>
+
+    <form method="POST">
+
+        <div class="candidate-container">
+
+            {% for c in candidates %}
+
+            <label class="candidate-card">
+
+                <input
+                    type="radio"
+                    name="candidate"
+                    value="{{ c }}"
+                    required>
+
+                <img
+                    src="{{ url_for('static', filename='hg' ~ loop.index ~ '.jpg') }}"
+                    alt="{{ c }}">
+
+                <div class="candidate-info">
+
+                    <div class="candidate-name">
+                        {{ c }}
+                    </div>
+
+                    <div class="vote-text">
+                        Vote {{ c }}
+                    </div>
+
+                </div>
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="bottom-section">
+
+            <div id="selectedCandidate">
+                No Candidate Selected
+            </div>
+
+            <button type="submit">
+                Submit Final Vote
+            </button>
+
+        </div>
+
+    </form>
+
+    <script>
+
+        const cards = document.querySelectorAll(".candidate-card");
+        const selectedText = document.getElementById("selectedCandidate");
+
+        cards.forEach(card => {
+
+            card.addEventListener("click", () => {
+
+                cards.forEach(c =>
+                    c.classList.remove("selected")
+                );
+
+                card.classList.add("selected");
+
+                const candidate =
+                    card.querySelector("input").value;
+
+                selectedText.innerHTML =
+                    "Selected: <b>" + candidate + "</b>";
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

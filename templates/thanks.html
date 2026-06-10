@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thank You</title>
+
+    <meta http-equiv="refresh" content="20;url=/">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+
+            background:#f4f6f9;
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
+        }
+
+        .container{
+
+            background:white;
+
+            padding:50px;
+
+            border-radius:20px;
+
+            box-shadow:0 5px 20px rgba(0,0,0,0.15);
+
+            width:90%;
+            max-width:600px;
+        }
+
+        .logo{
+            width:120px;
+            margin-bottom:20px;
+        }
+
+        h1{
+            color:#16a34a;
+            margin-bottom:20px;
+            font-size:40px;
+        }
+
+        h2{
+            color:#1e3a8a;
+            margin-bottom:15px;
+        }
+
+        p{
+            color:#555;
+            font-size:18px;
+            margin-bottom:10px;
+        }
+
+        .countdown{
+            margin-top:25px;
+            font-size:22px;
+            font-weight:bold;
+            color:#dc2626;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <img
+            src="{{ url_for('static', filename='logo.png') }}"
+            class="logo"
+            alt="School Logo">
+
+        <h1>✓ Thank You</h1>
+
+        <h2>Vote Recorded Successfully</h2>
+
+        <p>
+            Thank you for participating in the
+            Student Council Election.
+        </p>
+
+        <p>
+            Your vote has been securely recorded.
+        </p>
+
+        <div class="countdown">
+            Returning to Login in
+            <span id="timer">20</span> seconds...
+        </div>
+
+    </div>
+
+    <script>
+
+        let seconds = 20;
+
+        const timer =
+        document.getElementById("timer");
+
+        setInterval(() => {
+
+            seconds--;
+
+            timer.innerText = seconds;
+
+        }, 1000);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Election Results</title>
+
+<style>
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    background:#f5f7fa;
+
+    padding:40px;
+}
+
+.container{
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+h1{
+
+    color:#1e3a8a;
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th,td{
+
+    padding:12px;
+
+    border-bottom:
+    1px solid #ddd;
+
+    text-align:left;
+}
+
+th{
+
+    background:#2563eb;
+
+    color:white;
+}
+
+.total{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    color:#16a34a;
+
+    text-align:center;
+
+    margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+
+Student Council Election Results
+
+</h1>
+
+<div class="total">
+
+Total Votes: {{ total_votes }}
+
+</div>
+
+<div class="card">
+
+<h2>Head Boy Results</h2>
+
+<table>
+
+<tr>
+
+<th>Candidate</th>
+
+<th>Votes</th>
+
+</tr>
+
+{% for candidate, votes in headboy_results.items() %}
+
+<tr>
+
+<td>{{ candidate }}</td>
+
+<td>{{ votes }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>Head Girl Results</h2>
+
+<table>
+
+<tr>
+
+<th>Candidate</th>
+
+<th>Votes</th>
+
+</tr>
+
+{% for candidate, votes in headgirl_results.items() %}
+
+<tr>
+
+<td>{{ candidate }}</td>
+
+<td>{{ votes }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
