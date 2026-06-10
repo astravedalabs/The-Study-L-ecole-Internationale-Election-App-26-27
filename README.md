@@ -20,7 +20,7 @@ A simple Flask-based digital voting system for conducting student elections secu
 
 ## Project Structure
 
-text
+```text
 project/
 
 │ app.py
